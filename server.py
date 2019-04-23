@@ -2,9 +2,35 @@ import socket
 from _thread import *
 import pickle
 from game import Game
+from tkinter import Tk, Entry, Button, Label
 
 server = "127.0.0.1"
 port = 5555
+
+root = Tk()
+
+
+def buttonClicked():
+    global server
+    global port
+    port = int(b.get())
+    server = a.get()
+    root.destroy()
+
+
+a = Entry(root)
+a.place(relx=.2, rely=.1)
+b = Entry(root)
+b.place(relx=.2, rely=.3)
+Lip = Label(text="ip", fg="#eee", bg="#333")
+Lip.place(relx=.007, rely=.1)
+Lport = Label(text="port", fg="#eee", bg="#333")
+Lport.place(relx=.007, rely=.3)
+Bdimer = Button(root, width=7, command=buttonClicked, text = "Connect")
+Bdimer.place(relx=.35, rely=.7)
+root.mainloop()
+
+print(server,port)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
